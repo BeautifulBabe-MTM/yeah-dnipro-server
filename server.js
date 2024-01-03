@@ -12,10 +12,9 @@ mongoose.connect('mongodb+srv://admin:123zxc34@cluster0.hoxv5bc.mongodb.net/eDni
 });
 
 mongoose.connection.on('connected', () => {
-  console.log('Connected to MongoDB');
+  console.log('connected to MongoDB');
 });
 
-// Слушатель события ошибки подключения
 mongoose.connection.on('error', (err) => {
   console.error('MongoDB connection error:', err);
 });
@@ -37,8 +36,8 @@ app.use(express.json());
 app.get('/api/projects', async (req, res) => {
   try {
     const projects = await Project.find();
-    console.log('Found projects:', projects);
-    console.log('Number of projects:', projects.length);
+    console.log('Проекты:', projects);
+    console.log('Кол-во проектов:', projects.length);
     res.json(projects);
   } catch (error) {
     console.error(error);
@@ -46,6 +45,27 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
+app.post('/api/addProjects', async (req, res) => {
+  try {
+    const { name, description, deadline, image } = req.body;
+    
+    const newProject = new Project({
+      name,
+      description,
+      deadline,
+      image,
+    });
+
+    const savedProject = await newProject.save();
+
+    res.status(201).json(savedProject);
+  } catch (error) {
+    console.error('Ошибка при добавлении в бд:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is working on port ${PORT}`);
 });

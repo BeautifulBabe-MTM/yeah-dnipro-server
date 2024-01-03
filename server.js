@@ -45,25 +45,31 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
-app.post('/api/addProject', async (req, res) => {
-  try {
-    const { name, description, deadline, image } = req.body;
-    
-    const newProject = new Project({
-      name,
-      description,
-      deadline,
-      image,
-    });
+app.post('/api/addProject',
+  validate([
+    body('name').isLength({ min: 3, max: 25 }),
+    body('description').isLength({ min: 5, max: 100 }),
+    body('deadline').isLength({ min: 10 }),
+    body('image').isLength({ min: 7 }),
+  ]), async (req, res) => {
+    try {
+      const { name, description, deadline, image } = req.body;
 
-    const savedProject = await newProject.save();
+      const newProject = new Project({
+        name,
+        description,
+        deadline,
+        image,
+      });
 
-    res.status(201).json(savedProject);
-  } catch (error) {
-    console.error('Ошибка при добавлении в бд:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
+      const savedProject = await newProject.save();
+
+      res.status(201).json(savedProject);
+    } catch (error) {
+      console.error('Ошибка при добавлении в бд:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
 app.put('/api/updProject/:id', async (req, res) => {
   try {

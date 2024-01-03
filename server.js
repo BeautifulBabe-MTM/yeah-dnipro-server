@@ -24,14 +24,13 @@ const Project = mongoose.model('projects', projectSchema);
 app.use(cors());
 app.use(express.json());
 
-app.get('/projects/get', async (req, res) => {
+app.get('/api/projects', async (req, res) => {
   try {
     const projects = await Project.find();
     res.json(projects);
-    console.log(projects.name);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Server error' });
+    res.status(500).send('Internal Server Error');
   }
 });
 

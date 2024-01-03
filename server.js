@@ -26,6 +26,8 @@ app.use(express.json());
 app.get('/api/projects', async (req, res) => {
   try {
     const projects = await Project.find();
+    console.log('Found projects:', projects);
+    console.log('Number of projects:', projects.length);
     res.json(projects);
   } catch (error) {
     console.error(error);

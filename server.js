@@ -11,6 +11,15 @@ mongoose.connect('mongodb+srv://admin:123zxc34@cluster0.hoxv5bc.mongodb.net/', {
   useUnifiedTopology: true,
 });
 
+mongoose.connection.on('connected', () => {
+  console.log('Connected to MongoDB');
+});
+
+// Слушатель события ошибки подключения
+mongoose.connection.on('error', (err) => {
+  console.error('MongoDB connection error:', err);
+});
+
 const projectSchema = new mongoose.Schema({
   name: String,
   description: String,

@@ -19,6 +19,9 @@ const projectSchema = new mongoose.Schema({
 });
 
 const Project = mongoose.model('Project', projectSchema, 'projects');
+
+module.exports = Project;
+
 app.use(cors());
 app.use(express.json());
 

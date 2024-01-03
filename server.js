@@ -45,7 +45,7 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
-app.post('/api/addProjects', async (req, res) => {
+app.post('/api/addProject', async (req, res) => {
   try {
     const { name, description, deadline, image } = req.body;
     

@@ -36,7 +36,7 @@ mongoose.connection.on('error', (err) => {
 const projectSchema = new mongoose.Schema({
   name: String,
   description: String,
-  deadlines: Date,
+  deadlines: String,
   imageUrl: String,
 });
 

@@ -18,8 +18,7 @@ const projectSchema = new mongoose.Schema({
   imageUrl: String,
 });
 
-const Project = mongoose.model('eDnipro', projectSchema);
-
+const Project = mongoose.model('Project', projectSchema, 'projects');
 app.use(cors());
 app.use(express.json());
 

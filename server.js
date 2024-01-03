@@ -65,6 +65,45 @@ app.post('/api/addProject', async (req, res) => {
   }
 });
 
+app.put('/api/updProject/:id', async (req, res) => {
+  try {
+    const projectId = req.params.id;
+    const updatedProjectData = req.body;
+
+    const updatedProject = await Project.findByIdAndUpdate(
+      projectId,
+      { $set: updatedProjectData },
+      { new: true }
+    );
+
+    if (!updatedProject) {
+      return res.status(404).json({ message: 'Проект не найден' });
+    }
+
+    res.json({ message: 'Информация о проекте успешно обновлена', updatedProject });
+  } catch (error) {
+    console.error('Ошибка при обновлении проекта:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+app.delete('/api/deleteProject/:id', async (req, res) => {
+  try {
+    const projectId = req.params.id;
+    const deletedProject = await Project.findByIdAndDelete(projectId);
+
+    if (!deletedProject) {
+      return res.status(404).json({ message: 'Проект не найден' });
+    }
+
+    res.json({ message: 'Проект успешно удалён', deletedProject });
+  } catch (error) {
+    console.error('Ошибка при удалении проекта:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is working on port ${PORT}`);

@@ -108,9 +108,9 @@ app.put('/api/updProject/:id', async (req, res) => {
 });
 
 
-app.delete('/api/deleteProject/:id', async (req, res) => {
+app.delete('/api/deleteProject/:projectToDelete', async (req, res) => {
   try {
-    const projectId = req.params.id;
+    const projectId = req.params.projectToDelete;
     const deletedProject = await Project.findByIdAndDelete(projectId);
 
     if (!deletedProject) {
@@ -123,7 +123,6 @@ app.delete('/api/deleteProject/:id', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server is working on port ${PORT}`);

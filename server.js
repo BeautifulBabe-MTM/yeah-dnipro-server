@@ -68,7 +68,7 @@ app.post('/api/addProject',
   ]), async (req, res) => {
     try {
       const { name, description, deadline, image } = req.body;
-
+      console.log(name + " - name\n" + description + " - desc\n" + deadline + "- deadline\n" + image + " - img link");
       const newProject = new Project({
         name,
         description,

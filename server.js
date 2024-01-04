@@ -36,8 +36,8 @@ mongoose.connection.on('error', (err) => {
 const projectSchema = new mongoose.Schema({
   name: String,
   description: String,
-  deadlines: String,
-  imageUrl: String,
+  deadline: String,
+  image: String,
 });
 
 const Project = mongoose.model('Project', projectSchema, 'projects');

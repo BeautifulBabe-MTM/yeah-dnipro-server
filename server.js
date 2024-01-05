@@ -108,13 +108,13 @@ app.put('/api/updProject/:id', async (req, res) => {
 });
 
 
-app.delete('/api/deleteProject/:id', async (req, res) => {
+app.delete('/api/deleteProject/:_id', async (req, res) => {
   try {
     const projectId = req.params.projectToDelete;
     const deletedProject = await Project.findByIdAndDelete(projectId);
 
     if (!deletedProject) {
-      return res.status(403).json({ message: 'Проект не найден' });
+      return res.status(404).json({ message: 'Проект не найден' });
     }
 
     res.json({ message: 'Проект успешно удалён', deletedProject });

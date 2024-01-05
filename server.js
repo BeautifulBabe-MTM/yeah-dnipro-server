@@ -4,6 +4,8 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const { ObjectId } = mongoose.Schema.Types;
+const morgan = require('morgan');
+
 
 const validate = (validations) => {
   return async (req, res, next) => {
@@ -20,6 +22,9 @@ const validate = (validations) => {
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(morgan('dev'));
+
 
 mongoose.connect('mongodb+srv://admin:123zxc34@cluster0.hoxv5bc.mongodb.net/eDnipro', {
   useNewUrlParser: true,

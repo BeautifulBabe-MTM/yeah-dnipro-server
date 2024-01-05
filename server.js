@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
+const { ObjectId } = mongoose.Schema.Types;
 
 const validate = (validations) => {
   return async (req, res, next) => {
@@ -34,6 +35,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 const projectSchema = new mongoose.Schema({
+  _id: ObjectId,
   name: String,
   description: String,
   deadline: String,
@@ -87,7 +89,7 @@ app.post('/api/addProject',
 
 app.put('/api/updProject/:id', async (req, res) => {
   try {
-    const projectId = req.params.id;
+    const projectId = req.params._id;
     const updatedProjectData = req.body;
 
     const updatedProject = await Project.findByIdAndUpdate(

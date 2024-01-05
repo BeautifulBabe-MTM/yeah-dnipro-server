@@ -108,7 +108,7 @@ app.put('/api/updProject/:id', async (req, res) => {
 });
 
 
-app.delete('/api/deleteProject/:name', async (req, res) => {
+app.delete('/api/deleteProject/:id', async (req, res) => {
   try {
     const projectId = req.params.projectToDelete;
     const deletedProject = await Project.findByIdAndDelete(projectId);

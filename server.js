@@ -110,7 +110,7 @@ app.put('/api/updProject/:id', async (req, res) => {
 
 app.delete('/api/deleteProject/:_id', async (req, res) => {
   try {
-    const projectId = req.params.projectToDelete;
+    const projectId = req.params._id;
     const deletedProject = await Project.findByIdAndDelete(projectId);
 
     if (!deletedProject) {

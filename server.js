@@ -127,7 +127,7 @@ app.delete('/api/deleteProject/:_id', async (req, res) => {
     res.json({ message: 'Проект успешно удалён', deletedProject });
   } catch (error) {
     console.error('Ошибка при удалении проекта:', error);
-    res.status(500).send('Internal Server Error' + console.log(projectId));
+    res.status(500).send(`Internal Server Error ${projectId}`);
   }
 });
 

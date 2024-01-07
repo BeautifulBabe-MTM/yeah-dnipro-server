@@ -40,7 +40,6 @@ mongoose.connection.on('error', (err) => {
 });
 
 const projectSchema = new mongoose.Schema({
-  _id: ObjectId,
   name: String,
   description: String,
   deadline: String,

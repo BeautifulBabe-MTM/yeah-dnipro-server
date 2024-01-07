@@ -92,7 +92,7 @@ app.post('/api/addProject',
     }
   });
 
-app.put('/api/updProject/:id', async (req, res) => {
+app.put('/api/updProject/:_id', async (req, res) => {
   try {
     const projectId = req.params._id;
     const updatedProjectData = req.body;
@@ -110,7 +110,7 @@ app.put('/api/updProject/:id', async (req, res) => {
     res.json({ message: 'Информация о проекте успешно обновлена', updatedProject });
   } catch (error) {
     console.error('Ошибка при обновлении проекта:', error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send('Internal Server Error ' + console.log(projectId));
   }
 });
 
@@ -127,7 +127,7 @@ app.delete('/api/deleteProject/:_id', async (req, res) => {
     res.json({ message: 'Проект успешно удалён', deletedProject });
   } catch (error) {
     console.error('Ошибка при удалении проекта:', error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send('Internal Server Error' + console.log(projectId));
   }
 });
 

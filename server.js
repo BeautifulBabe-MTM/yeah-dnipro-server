@@ -110,7 +110,7 @@ app.put('/api/updProject/:_id', async (req, res) => {
     res.json({ message: 'Информация о проекте успешно обновлена', updatedProject });
   } catch (error) {
     console.error('Ошибка при обновлении проекта:', error);
-    res.status(500).send('Internal Server Error ' + console.log(projectId));
+    res.status(500).send('Internal Server Error ');
   }
 });
 
